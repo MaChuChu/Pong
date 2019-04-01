@@ -25,11 +25,12 @@ public class Pong extends Application {
     MediaPlayer mp;
         
     Player player,player2;
+    int pWidth = 30;
+    int pHeight = 100;
     Ball ball;
     Score score;
     Random rand;
-    int pWidth = 30;
-    int pHeight = 100;
+    
     
     @Override
     public void start(Stage primaryStage) {
@@ -89,7 +90,8 @@ public class Pong extends Application {
     private void hit(){
         if (player.getRect().getBoundsInParent().intersects(ball.getRect().getBoundsInParent()) || player2.getRect().getBoundsInParent().intersects(ball.getRect().getBoundsInParent())) {
         ball.setxSpeed(-ball.getxSpeed());  
-        
+        ball.setxSpeed(ball.getxSpeed()*1.25);
+        ball.setySpeed(ball.getySpeed()*1.25);
         }
     }
     private void point() {
@@ -101,12 +103,16 @@ public class Pong extends Application {
             score.setP1Score(score.getP1Score()+1);
             ball.setX((width/2)-30);
             ball.setY((height/2)-30);
+            ball.setxSpeed(4);
+            ball.setySpeed(4);
             scene.setFill(Color.rgb(r, g, b));
         }
         if (ball.getX() < 0) {
             score.setP2Score(score.getP2Score()+1);
             ball.setX((width/2)-30);
             ball.setY((height/2)-30);
+            ball.setxSpeed(4);
+            ball.setySpeed(4);
             scene.setFill(Color.rgb(r, g, b));
         }
         score.updateScore();
